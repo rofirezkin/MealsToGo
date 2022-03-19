@@ -5,11 +5,9 @@ import styled from "styled-components/native";
 import {RestaurantInfoCard} from "../components/restaurant-info-card.component";
 import {Spacer} from "../../../components/spacer/spacer.component";
 import {SafeArea} from "../../../components/utility/safe-area.component";
-import {RestaurantContext} from "../../../services/restaurants/restaurants.context";
+import {RestaurantsContext} from "../../../services/restaurants/restaurants.context";
+import {Search} from "../components/search.component";
 
-const SearchContainer = styled.View`
-  margin: ${props => props.theme.space[3]};
-`;
 export const RestaurantList = styled(FlatList).attrs({
   contentContainerStyle: {
     padding: 10,
@@ -25,7 +23,7 @@ const LoadingContainer = styled.View`
 `;
 
 export const RestaurantsScreen = () => {
-  const {isLoading, error, restaurants} = useContext(RestaurantContext);
+  const {isLoading, error, restaurants} = useContext(RestaurantsContext);
 
   return (
     <SafeArea>
@@ -34,16 +32,12 @@ export const RestaurantsScreen = () => {
           <Loading size={50} animating={true} color={Colors.blue300} />
         </LoadingContainer>
       )}
-      <SearchContainer>
-        <Searchbar />
-      </SearchContainer>
-
+      <Search />
       <RestaurantList
         data={restaurants}
         renderItem={({item}) => {
-          console.log("ite", item);
           return (
-            <Spacer position="bottom" size="large">
+            <Spacer key={item.name} position="bottom" size="large">
               <RestaurantInfoCard restaurant={item} />
             </Spacer>
           );
