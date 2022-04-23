@@ -2,9 +2,9 @@ import React from "react";
 
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {Ionicons} from "@expo/vector-icons";
-import {Text, Button} from "react-native";
+
 import {SettingsNavigator} from "./settings.navigator";
-import {SafeArea} from "../../components/utility/safe-area.component";
+
 import RestaurantsNavigator from "./restaurants.navigator";
 import {MapScreen} from "../../features/map/screens/map.screen";
 import {RestaurantsContextProvider} from "../../services/restaurants/restaurants.context";
