@@ -8,20 +8,26 @@ import {
   ErrorContainer,
   Title,
 } from "../components/account.styles";
+import {View, TextInput as Input, Appearance} from "react-native";
 import {Text} from "../../../components/typography/text.component";
 import {Spacer} from "../../../components/spacer/spacer.component";
 import {AuthenticationContext} from "../../../services/authentication/authentication.context";
-import {ActivityIndicator, Colors} from "react-native-paper";
+import {ActivityIndicator, Colors, TextInput} from "react-native-paper";
 
 export const LoginScreen = ({navigation}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const {onLogin, error, isLoading} = useContext(AuthenticationContext);
-  console.log("erradadda", isLoading);
+  
+  const colorScheme = Appearance.getColorScheme();
+  console.log('color Scheme', colorScheme);
   return (
     <AccountBackground>
       <AccountCover />
       <Title>Meals To Go</Title>
+      <View>
+        <Input placeholder="testing" />
+      </View>
       <AccountContainer>
         <AuthInput
           label="E-mail"
@@ -58,6 +64,7 @@ export const LoginScreen = ({navigation}) => {
             <ActivityIndicator animating={true} color={Colors.blue300} />
           )}
         </Spacer>
+
       </AccountContainer>
       <Spacer size="large">
         <AuthButton mode="contained" onPress={() => navigation.goBack()}>
